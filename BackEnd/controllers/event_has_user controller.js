@@ -1,4 +1,4 @@
-const { createAUserToEvent, getAllTheEvents, getEventbyId, deleteUserFromEvent} = require("../event_has_user models")
+const { createAUserToEvent, getAllTheEvents, getEventbyId, deleteUserFromEvent} = require("../database/models/event_has_user")
 
 module.exports={
     createUserEvent: (req,res)=>{

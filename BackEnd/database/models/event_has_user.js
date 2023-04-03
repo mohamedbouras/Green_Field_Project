@@ -1,7 +1,5 @@
 const mysql = require("mysql2")
-const connection = require("./database");
-
-
+const connection = require("../index");
 module.exports={
     createAUserToEvent:(callback,event_id, user_id)=>{
         let sql = "insert into event_has_user(event_id,user_id) values (?,?);"
@@ -22,4 +20,4 @@ module.exports={
         let sql = `delete from event_has_user where event_id = ? and user_id=?;`
         connection.query(sql,[event_id , user_id],callback)
     }
-} 
+}

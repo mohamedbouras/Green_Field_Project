@@ -1,5 +1,5 @@
 const express = require("express")
-const { createUserEvent, getAllEvents, getEvent, deleteUserEvent } = require("../event_has_user controllers/event_has_user controller")
+const { createUserEvent, getAllEvents, getEvent, deleteUserEvent } = require("../controllers/event_has_user controller")
 const event_has_user_router = express.Router()
 
 event_has_user_router.post("/events_users",createUserEvent)

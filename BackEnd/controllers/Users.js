@@ -1,4 +1,4 @@
-const users = require("../modules/Users");
+const users = require("../database/models/Users");
 const multer = require('multer')
 
     module.exports = {

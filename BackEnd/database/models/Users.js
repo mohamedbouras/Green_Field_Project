@@ -1,4 +1,4 @@
-const conn = require("./index");
+const conn = require("../index");
 
 module.exports = {
   //a function which fetches all the users.

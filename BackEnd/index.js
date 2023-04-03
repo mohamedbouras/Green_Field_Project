@@ -2,9 +2,17 @@ const express = require('express')
 const cors = require('cors')
 const event_has_user_router = require('./event_has_user routes/event_has_user route')
 const app = express()
+
+
+
+
+const cloudinary = require('cloudinary').v2;
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
+
+const userRoutes = require('./routes/Users')
+
 const db = require('./database/index')
 const eventRoute = require('./routes/event.js')
 app.use('/api/events', eventRoute)
@@ -14,12 +22,19 @@ cloudinary.config({
     api_key: '967367384323565',
     api_secret: '2o_RpxzLlmYbnS-hoPDxplCjPus'
   });
+
 // user Aymen 
+app.use("/api/user",userRoutes)
+
+cloudinary.config({
+    secure: true
+  });
 
 
-
+  console.log(cloudinary.config());
 
 //event mohamed Bouras
+
 
 
 

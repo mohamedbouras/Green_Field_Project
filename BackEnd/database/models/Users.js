@@ -34,9 +34,10 @@ module.exports = {
     });
   },
 // a function that update a user by id.
-  
-
-
-
-
+update: function(id, userData, callback) {
+  const sql = "UPDATE User SET ? WHERE user_id = ?";
+  conn.query(sql, [userData, id], function(error, results) {
+    callback(error, results);
+  });
+}
 };

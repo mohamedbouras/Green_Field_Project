@@ -8,7 +8,7 @@ app.use(express.urlencoded({extended:true}))
 const db = require('./database/index')
 
 
-//event mohamed Bouras
+
 const eventRoute = require('./routes/event.js')
 app.use('/api/events', eventRoute)
 cloudinary.config({ 
@@ -17,7 +17,6 @@ cloudinary.config({
     api_secret: '2o_RpxzLlmYbnS-hoPDxplCjPus'
   });
 
-// user Aymen 
 const userRoutes = require('./routes/Users')
 app.use("/api/user",userRoutes)
 
@@ -31,7 +30,6 @@ cloudinary.config({
 
 
 
-//Event Has User  Saif
 const event_has_user_router = require('./routes/event_has_user route')
 app.use('/api',event_has_user_router)
 

@@ -12,6 +12,7 @@ const NaveBaree = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
+
             <Nav.Link href='/profile'>Profile</Nav.Link>
             <Nav.Link href="/addCours">Add Course </Nav.Link>
             <Nav.Link href="/">Courses</Nav.Link>

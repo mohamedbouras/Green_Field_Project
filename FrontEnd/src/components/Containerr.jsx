@@ -17,7 +17,7 @@ const Containerr = () => {
           <Row  lg={9}>
 
             {/* map return this */}
-            <Col  className="mt-3">
+            {/* <Col  className="mt-3">
             <CoursCard/>
             </Col>
             <Col  className="mt-3">
@@ -34,7 +34,7 @@ const Containerr = () => {
             </Col>
             <Col  className="mt-3">
             <CoursCard/>
-            </Col>
+            </Col> */}
           
             
            

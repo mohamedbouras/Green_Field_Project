@@ -1,4 +1,4 @@
-const { createAUserToEvent, getAllTheEvents, getEventbyId, deleteUserFromEvent} = require("../database/models/event_has_user")
+const { createAUserToEvent, getAllTheEvents, getEventbyId, deleteUserFromEvent, getEventsByUserId} = require("../database/models/event_has_user")
 
 module.exports={
     createUserEvent: (req,res)=>{
@@ -53,5 +53,15 @@ module.exports={
             }
             res.status(200).send("user deleted")
         },event_id,user_id)
+    },
+    getEventsWithUserId: (req,res)=>{
+        const user_id = req.params.id
+        getEventsByUserId((err,results)=>{
+            if (err){
+                console.log(err)
+                res.status(500).json(err)
+            }
+            res.status(200).json(results) 
+        },user_id)
     }
 }

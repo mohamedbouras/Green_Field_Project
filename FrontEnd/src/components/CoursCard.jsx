@@ -2,14 +2,15 @@ import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
-const CoursCard = () => {
+const CoursCard = ({data}) => {
   return (
+
         <Card style={{ width: '18rem' }}>
-          <Card.Img variant="top" src="http://via.placeholder.com/640x360" />
+          <Card.Img variant="top" src= {data.event_image}/>
           <Card.Body>
-            <Card.Title>Cours Title Title</Card.Title>
+            <Card.Title>{data.event_name}</Card.Title>
             <Card.Text>
-              Course descrition only the 200 first carracter
+              {data.event_description}
             </Card.Text>
             <Button variant="primary">View Course</Button>
           </Card.Body>

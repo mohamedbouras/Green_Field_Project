@@ -1,10 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import NaveBaree from "./NaveBaree.jsx"
 import CoursCard from "./CoursCard.jsx"
 import { Container, Col, Row } from "react-bootstrap"
 import SearchBar from "./searchBar.jsx"
 import EFouuter from "./EFouuter.jsx"
+import axios from 'axios'
 const Containerr = () => {
+  const [data,setData] = useState([])
+  const getAll = () => {
+    axios.get("http://localhost:4000/api/events/getAll").then(({data})=>{
+      console.log(data,'hi')
+      setData(data)
+    }).catch((err)=>{
+      console.log(err)
+    })
+  }
+  useEffect (()=>{
+    getAll()
+    },[])
   return (
     <div>
         <NaveBaree />
@@ -16,25 +29,17 @@ const Containerr = () => {
           <Col lg={9} >
           <Row  lg={9}>
 
-            {/* map return this */}
-            {/* <Col  className="mt-3">
-            <CoursCard/>
+
+
+            {data.length>0 && data.map((e,i)=>{
+              return (
+              <Col  className="mt-3" key = {i}>
+            <CoursCard data = {e}/>
             </Col>
-            <Col  className="mt-3">
-            <CoursCard/>
-            </Col>
-            <Col  className="mt-3">
-            <CoursCard/>
-            </Col>
-            <Col  className="mt-3">
-            <CoursCard/>
-            </Col>
-            <Col  className="mt-3">
-            <CoursCard/>
-            </Col>
-            <Col  className="mt-3">
-            <CoursCard/>
-            </Col> */}
+              )
+            })}
+            
+
           
             
            

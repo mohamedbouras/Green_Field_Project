@@ -1,21 +1,42 @@
-import Container from './components/Containerr.jsx'
-import {Link,Routes,Route} from 'react-router-dom'
+
+import NaveBaree from "./components/NaveBaree.jsx"
+import { Container, Col, Row } from "react-bootstrap"
+import EFouuter from "./components/EFouuter.jsx"
+import { useState } from "react"
+import AddCours from "./components/addCours.jsx"
+import Containerr from "./components/Containerr.jsx"
+import { Route, Routes } from 'react-router-dom'
 import Profile from "./components/Profile.jsx"
 import { useState,useEffect } from 'react'
 import axios from "axios"
 import MyCoursesList from './components/MyCoursesList.jsx'
 import CourseView from './components/CourseView.jsx'
+import ScrollToTopButton from "./components/ScrollToTopButton.jsx"
+
 function App() {
 
   
 
+
   return (
-        <Routes>
-          <Route path = "/courseview" element = {<CourseView/>}/>
-          <Route path="/" element={<Container/>}/>
-          <Route path="/profile" element={<Profile/>}/>
-          <Route path="/mylist" element ={<MyCoursesList/>}/>
-        </Routes>
+
+
+    <div >
+      <Routes>
+        <Route path='/' element={<><Containerr/> <ScrollToTopButton/> </>} />
+        <Route path='/addCours' element={<><AddCours /> <ScrollToTopButton/> </>}/>
+        <Route path='/profile' element={<><Profile /> <ScrollToTopButton/> </> } />
+        <Route path="/mylist" element ={<><MyCoursesList/> <ScrollToTopButton/> </>}/>
+        <Route path = "/courseview" element = {<><CourseView/><ScrollToTopButton/> </>}/>
+      </Routes>
+
+
+    </div>
+
+
+
+
+
   )
 }
 

@@ -1,9 +1,10 @@
 const mysql = require('mysql2')
+const cors = require("cors")
 
 const conn =mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "Saif1234",
+    password: "root",
     database:'E-education'
 })
 conn.connect((err)=>{

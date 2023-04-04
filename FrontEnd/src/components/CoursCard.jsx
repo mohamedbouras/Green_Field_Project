@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+
 import { useNavigate } from 'react-router-dom';
 import CourseView from './CourseView';
 import axios from 'axios';
@@ -17,9 +18,11 @@ const CoursCard = ({data}) => {
       console.log(err)
      })
   }
+
   return (
+
         <Card style={{ width: '18rem' }}>
-          <Card.Img variant="top" src="http://via.placeholder.com/640x360" />
+          <Card.Img variant="top" src= {data.event_image}/>
           <Card.Body>
             <Card.Title>{data.event_name}</Card.Title>
             <Card.Text>

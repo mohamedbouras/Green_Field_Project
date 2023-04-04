@@ -42,11 +42,12 @@ function AddCours() {
         event_image: imageUrl,
         event_status: eventStatus,
       };
+      console.log(course);
       const response = await axios.post(
         'http://localhost:4000/api/events/add',
         course
-      );
-      console.log(response.data);
+      )
+ 
     } catch (error) {
       console.log(error);
     }
@@ -70,21 +71,15 @@ console.log(eventDescription)
           type="text"
           value={eventName}
           onChange={(event) => setEventName(event.target.value)}
-        />
+        /><br />
         Image :{' '}
-        <input type="file" onChange={(e) => handleChoFile(e)} />
+        <input type="file" onChange={(e) => handleChoFile(e)} /> <br />
         Participants :{' '}
         <input
           type="number" // changed to number type
           value={eventParticipants}
           onChange={(event) => setEventParticipants(event.target.value)}
         />
-        {/* Description :{' '}
-        <input
-          type="text"
-          value={eventDescription}
-          onChange={(event) => setEventDescription(event.target.value)}
-        /> */}
         <Editor 
     apiKey='y7gdwwrri4u64ofxgie5lwhlqztg98xcfms0xjcuoyheon0i'
       onInit={(evt, editor) => editorRef.current = editor}

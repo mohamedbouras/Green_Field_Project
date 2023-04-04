@@ -11,7 +11,7 @@ const db = require('./database/index')
 //event mohamed Bouras
 const eventRoute = require('./routes/event.js')
 app.use('/api/events', eventRoute)
-cloudinary.config({
+cloudinary.config({ 
     cloud_name: 'dmyit8zek',
     api_key: '967367384323565',
     api_secret: '2o_RpxzLlmYbnS-hoPDxplCjPus'

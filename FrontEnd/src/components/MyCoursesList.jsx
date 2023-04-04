@@ -1,15 +1,14 @@
-import React from 'react'
+import React,{ useEffect, useState } from 'react'
 import axios from 'axios'
 import { Container, Col, Row } from "react-bootstrap"
 import CoursCard from './CoursCard'
-import { useEffect, useState } from 'react'
 import NaveBaree from './NaveBaree';
 import EFouuter from './EFouuter';
 function MyCoursesList() {
     const [eventUserData, setEventUserData] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://127.0.0.1:4000/api/events_users/user/${4}`)
+        axios.get(`http://127.0.0.1:4000/api/events_users/user/${1}`)
             .then(res => { setEventUserData(res.data)})
             .catch(err => { console.log(err) })
     }, [])

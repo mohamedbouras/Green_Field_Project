@@ -34,7 +34,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `E-education`.`Event` (
   `event_id` INT NOT NULL AUTO_INCREMENT,
   `event_name` VARCHAR(45) NOT NULL,
-  `event_description` VARCHAR(45) NOT NULL,
+  `event_description` LONGTEXT NOT NULL,
   `event_time` DATE NOT NULL,
   `event_image` LONGTEXT NOT NULL,
   `event_participants` INT NOT NULL,

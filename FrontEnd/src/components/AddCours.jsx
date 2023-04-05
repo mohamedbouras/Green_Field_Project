@@ -1,75 +1,9 @@
-// import React, { useState } from 'react'
-// import axios from 'axios'
-// function AddCours() {
-//     const [eventName,setEventName] = useState("")
-//     const [eventDescription,setEventDescription] = useState("")
-//     const [eventParticipants,setEventParticipants] = useState(0)
-//     const [eventImage,setEventImage] = useState('')
-//     const [eventStatus,setEventStatus] = useState(false)
-//     const [file,setFile] = useState('')
-//     const handelChoFile = (e) => {
-//         console.log(e)
-//         console.log(e.target.files[0])
-//         setFile(e.target.files[0])
-//         console.log('hi')
-//         const form = new FormData()
-//         form.append('file',file)
-//         form.append('upload_preset','jawaher')
-//         form.append('cloud_name','utmcmojm')
-//          axios .post(`https://api.cloudinary.com/v1_1/utmcmojm/image/upload`,form).then((result)=>{
-//              console.log(result)
-//          })
-       
-//  .catch(err => console.log(err))
-//     }
-//     const UpImage = async () => {
-    
-//     }
-//     const addNew =()=>{
-//         let course = {
-//             event_name:eventName,
-//             event_description:eventDescription,
-//             event_participants:eventParticipants,
-//             event_image:eventImage,
-//             event_status:eventStatus
-//         }
-//         console.log(course)
-//         axios.post('http://localhost:4000/api/events/add',course).then(({data})=>{
-//             console.log(data)
-//         }).catch((err)=>{
-//             console.log(err)
-//         })
-//     }
-//   return (
-//     <div>
-//         <div>
-      
-       
-//           Course Name :  <input type='text' value={eventName} onChange = {(event)=>setEventName(event.target.value)}/>
-//        Image : <input type="file" value={file} onChange = {(e)=>handelChoFile(e)}/>
-       
-//        Participants : <input type="text" value={eventParticipants}onChange = {(event)=>setEventParticipants(event.target.value)}/>
-//        description : <input type = "text" value={eventDescription}onChange = {(event)=>setEventDescription(event.target.value)}/>
-//        status : <input type = "text" value={eventStatus}onChange = {(event)=>setEventStatus(event.target.value)}/>
-
-//        <button onClick={()=>{UpImage()}}>send</button>
-//             </div>
-//     </div>
-//   )
-// }
-
-//dmyit8zek
-//mohamed
-// export default AddCours
-
 import React, { useState , useRef} from 'react';
 import axios from 'axios';
 import './AddCours.css'
 import { Editor } from '@tinymce/tinymce-react';
 import NaveBaree from "./NaveBaree.jsx"
 import EFouuter from "./EFouuter.jsx"
-import { Container , Button,InputGroup} from "react-bootstrap"
-
 function AddCours() {
   const [eventName, setEventName] = useState('');
   const [eventDescription, setEventDescription] = useState('');
@@ -124,7 +58,11 @@ function AddCours() {
     }
   };
 console.log(eventDescription)
-  return (
+  return (<>
+    < NaveBaree/>
+    <br />
+    <center><h1>Add Course</h1></center>
+    <br />
     <div className="add-cours">
       <div>
         Course Name :{' '}
@@ -161,19 +99,12 @@ console.log(eventDescription)
         content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
       }}
     />
-    <button onClick={log}>Confirm corse</button><br /><br />
-    
-
-        Status :{' '}
-        <input
-          type="checkbox" 
-          checked={eventStatus} 
-          onChange={(event) => setEventStatus(event.target.checked)} 
-        />
+    <center><button onClick={log}>Confirm corse</button></center><br /><br />
         <button onClick={() => addNew()}>Submit</button>
       </div>
     </div>
-  );
+    < EFouuter/>
+    </>);
 }
 
 export default AddCours;

@@ -12,7 +12,6 @@ const NaveBaree = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-
             <Nav.Link href='/profile'>Profile</Nav.Link>
             <Nav.Link href="/addCours">Add Course </Nav.Link>
             <Nav.Link href="/">Courses</Nav.Link>
@@ -20,7 +19,7 @@ const NaveBaree = () => {
           </Nav>
           <Nav>
           <NavDropdown title="My learning" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">My List</NavDropdown.Item>
+              <NavDropdown.Item href="/mylist">My List</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
                 Wish List
               </NavDropdown.Item>

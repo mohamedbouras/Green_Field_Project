@@ -29,6 +29,8 @@ const Containerr = () => {
           <Col lg={9} >
           <Row  lg={9}>
 
+
+
             {data.length>0 && data.map((e,i)=>{
               return (
               <Col  className="mt-3" key = {i}>
@@ -37,7 +39,7 @@ const Containerr = () => {
               )
             })}
             
-          
+
           
             
            

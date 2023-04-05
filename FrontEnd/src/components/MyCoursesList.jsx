@@ -16,6 +16,7 @@ function MyCoursesList() {
     return (
         <div>
             <NaveBaree />
+            <Container>
             <Row lg={9}>
                 {eventUserData.map((e,i)=>{
                      return (<Col className="mt-3" key ={i}>
@@ -23,6 +24,8 @@ function MyCoursesList() {
                             </Col>)
                 })}
             </Row>
+            </Container>
+            
             <EFouuter />
         </div>
 

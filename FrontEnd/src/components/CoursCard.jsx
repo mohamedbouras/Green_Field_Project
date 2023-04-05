@@ -9,8 +9,8 @@ const CoursCard = ({data}) => {
   const [courseData,setCourseData] = useState([])
   const navigate = useNavigate()
 
-  function handleCourseView (){
-     axios.get(`http://127.0.0.1:4000/api/events_users/event/1`)
+  function handleCourseView (id){
+     axios.get(`http://127.0.0.1:4000/api/events/${id}`)
      .then(res=>{
       setCourseData(res.data)
       navigate("/courseview",{state:{courseData:res.data}})
@@ -18,7 +18,6 @@ const CoursCard = ({data}) => {
       console.log(err)
      })
   }
-
   return (
 
         <Card style={{ width: '18rem' }}>
@@ -28,7 +27,7 @@ const CoursCard = ({data}) => {
             <Card.Text>
               {data.event_description}
             </Card.Text>
-            <Button variant="primary" onClick={handleCourseView}>View Course</Button>
+            <Button variant="primary" onClick={()=>handleCourseView(data.event_id)}>View Course</Button>
           </Card.Body>
         </Card>
   )

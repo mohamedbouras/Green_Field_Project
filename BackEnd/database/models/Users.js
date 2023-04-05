@@ -8,12 +8,17 @@ module.exports = {
       callback(error, results);
     });
   },
+  getOneByEmail:function(callback, user_email){
+     const sql = "select * from user where user_email=? "
+     conn.query(sql ,user_email,function (error, results) {
+      callback(error, results);
+    })},
 
   //a function that retrieves one user record based on the provided id.
   getOne: function (id, callback) {
-    const sql = "SELECT * FROM `User` WHERE `id_users` = ?";
+    const sql = "SELECT * FROM `User` WHERE `user_id` = ?;"
     conn.query(sql, [id], function (error, results) {
-      callback(error, results);
+      callback(error, results);  
     });
   },
 

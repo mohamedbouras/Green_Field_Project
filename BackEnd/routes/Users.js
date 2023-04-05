@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-const { getAllUsers, addUser, getOneUser, deleteUser,updateUser, uploadFile} = require('../controllers/Users');
+const { getAllUsers, addUser, getOneUser, deleteUser,updateUser, uploadFile, getOneUserLogin, handleLogin} = require('../controllers/Users');
+
+router.get("/getuserbyemail/:email",getOneUserLogin)
 
 // GET request to fetch all users
 router.get('/getAll', getAllUsers);
@@ -20,6 +22,8 @@ router.put('/:id', updateUser);
 
 
 router.post('/upload',uploadFile)
+
+router.post('/login',handleLogin)
   
 
 module.exports = router;

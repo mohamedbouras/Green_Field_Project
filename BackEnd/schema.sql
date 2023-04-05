@@ -30,13 +30,31 @@ CREATE TABLE IF NOT EXISTS `e-education`.`event` (
   `event_status` TINYINT NOT NULL,
   PRIMARY KEY (`event_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 9
+
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `e-education`.`user`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `e-education`.`user` (
+  `user_id` INT NOT NULL AUTO_INCREMENT,
+  `user_name` VARCHAR(45) NOT NULL,
+  `user_email` VARCHAR(60) NOT NULL,
+  `user_password` VARCHAR(500) NOT NULL,
+  `user_type` VARCHAR(45) NOT NULL,
+  `user_image` VARCHAR(500) NOT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE INDEX `UQ_user_email` (`user_email` ASC) VISIBLE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 13
 DEFAULT CHARACTER SET = utf8mb3;
 
 
 -- -----------------------------------------------------
 -- Table `e-education`.`event_has_user`
 -- -----------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS `e-education`.`event_has_user` (
   `event_id` INT NOT NULL,
   `user_id` INT NOT NULL,
@@ -72,4 +90,5 @@ INSERT INTO event (event_name, event_description, event_time, event_image, event
 INSERT INTO event (event_name, event_description, event_time, event_image, event_participants, event_status) VALUES ('Data Science Bootcamp', 'Get a comprehensive introduction to data science and learn how to work with large datasets.', '2023-07-10', 'https://placebeard.it/640x360', 0, 0);
 INSERT INTO event (event_name, event_description, event_time, event_image, event_participants, event_status) VALUES ('Python Programming Course', 'Learn the fundamentals of Python programming and build your first projects.', '2023-08-01', 'https://placebeard.it/640x360', 0, 0);
 INSERT INTO event (event_name, event_description, event_time, event_image, event_participants, event_status) VALUES ('Cybersecurity Symposium', 'Hear from industry experts on the latest trends and strategies in cybersecurity.', '2023-09-05', 'https://placebeard.it/640x360', 0, 0);
+
 

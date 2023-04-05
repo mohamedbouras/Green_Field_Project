@@ -28,6 +28,7 @@ const CoursCard = ({data}) => {
               {data.event_description}
             </Card.Text>
             <Button variant="primary" onClick={()=>handleCourseView(data.event_id)}>View Course</Button>
+
           </Card.Body>
         </Card>
   )

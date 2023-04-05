@@ -6,8 +6,8 @@ import { Route, Routes } from 'react-router-dom'
 import Profile from "./components/Profile.jsx"
 import MyCoursesList from './components/MyCoursesList.jsx'
 import CourseView from './components/CourseView.jsx'
-import LandingPage from "./components/LandingPage.jsx"
-import { useState,useEffect } from 'react'
+
+
 function App() {
   const [user, setuser] = useState(JSON.parse(localStorage.getItem('user')));
 
@@ -19,9 +19,9 @@ function App() {
    <div>
    
       <Routes>
-    <Route path='/addCours' element={<><AddCours /> <ScrollToTopButton/> </>}/>
-        <Route path='/profile' element={<><Profile  user={user}/> <ScrollToTopButton/> </> } />
-        <Route path="/mylist" element ={<><MyCoursesList user={user}/> <ScrollToTopButton/> </>}/>
+       <Route path='/addCours' element={<><AddCours /> <ScrollToTopButton/> </>}/>
+        <Route path='/profile' element={<><Profile /> <ScrollToTopButton/> </> } />
+        <Route path="/mylist" element ={<><MyCoursesList/> <ScrollToTopButton/> </>}/>
         <Route path = "/courseview" element = {<><CourseView/><ScrollToTopButton/> </>}/>
         <Route path='/container' element={<><Containerr/> <ScrollToTopButton/></>} />
         <Route path = "/landingPage" element = {<><LandingPage /><ScrollToTopButton/> </>}/>

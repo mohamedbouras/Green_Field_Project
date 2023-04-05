@@ -26,14 +26,7 @@ const styles = {
   }
 };
 
-const Profile = () => {
-  const user = {
-    user_name: "John Doe",
-    user_email: "john.doe@example.com",
-    user_type : "teacher" ,
-    user_image: "http://via.placeholder.com/640x360",
-  };
-
+const Profile = ({user}) => {
   return (
     <div>
       <NaveBaree />
@@ -41,7 +34,7 @@ const Profile = () => {
         <h1 style={styles.h1}> Name : {user.user_name}</h1>
         <p style={styles.p}> Email :   {user.user_email}</p>
         <p style={styles.p}> Type :   {user.user_type }</p>
-        <img src={user.user_image} style={styles.img} />
+        <img src={user.user_image} />
       </div>
       <UpdateUser/>
       <EFouuter/>

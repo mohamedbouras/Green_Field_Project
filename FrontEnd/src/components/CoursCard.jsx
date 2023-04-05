@@ -18,12 +18,13 @@ const CoursCard = ({data}) => {
       console.log(err)
      })
   }
-  
+
   function handleCourseUp(){
    
      navigate("/UpCours",{state:{courseData:data}})
     
  }
+
   return (
 
         <Card style={{ width: '18rem' }}>

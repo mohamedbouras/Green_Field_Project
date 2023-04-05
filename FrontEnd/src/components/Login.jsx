@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-function Login() {
+function Login({setuser}) {
     const navigate = useNavigate()
     const [email ,setEmail] = useState("")
     const [password,setPasword] = useState("")
@@ -19,7 +19,8 @@ function Login() {
         console.log(res)
           if(res.data.success){
             setData(res.data.message)
-            navigate("/container",{state:{data:res.data.message}})
+            navigate("/landingPage",{state:{data:res.data.message}})
+            setuser(res.data.message)
           }
           else{
             alert("check Email or Password")

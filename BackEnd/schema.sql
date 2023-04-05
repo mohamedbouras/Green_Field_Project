@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `e-education`.`event` (
   `event_status` TINYINT NOT NULL,
   PRIMARY KEY (`event_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 14
+
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -54,25 +54,30 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- -----------------------------------------------------
 -- Table `e-education`.`event_has_user`
 -- -----------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS `e-education`.`event_has_user` (
   `event_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`event_id`, `user_id`),
-  INDEX `fk_event_has_user_user1_idx` (`user_id` ASC) VISIBLE,
-  INDEX `fk_event_has_user_event_idx` (`event_id` ASC) VISIBLE,
-  CONSTRAINT `fk_event_has_user_event`
-    FOREIGN KEY (`event_id`)
-    REFERENCES `e-education`.`event` (`event_id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `fk_event_has_user_user1`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `e-education`.`user` (`user_id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+  INDEX `fk_Event_has_User_Event_idx` (`event_id` ASC) VISIBLE)
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb3
-COMMENT = '	';
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `e-education`.`user`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `e-education`.`user` (
+  `user_id` INT NOT NULL AUTO_INCREMENT,
+  `user_name` VARCHAR(45) NOT NULL,
+  `user_email` VARCHAR(60) NOT NULL,
+  `user_password` VARCHAR(500) NOT NULL,
+  `user_type` VARCHAR(45) NOT NULL,
+  `user_image` VARCHAR(500) NOT NULL,
+  PRIMARY KEY (`user_id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 7
+DEFAULT CHARACTER SET = utf8mb3;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
@@ -80,15 +85,10 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
-
-
-
-
-
-INSERT INTO event (event_name, event_description, event_time, event_image, event_participants, event_status) VALUES ('Web Development Workshop', 'Join us for a hands-on workshop covering the basics of web development.', '2023-05-20', 'https://example.com/images/webdevworkshop.jpg', 0, 0);
-INSERT INTO event (event_name, event_description, event_time, event_image, event_participants, event_status) VALUES ('Virtual Career Fair', 'Connect with top employers in the tech industry from the comfort of your own home.', '2023-06-15', 'https://example.com/images/careerfair.jpg', 0, 0);
-INSERT INTO event (event_name, event_description, event_time, event_image, event_participants, event_status) VALUES ('Data Science Bootcamp', 'Get a comprehensive introduction to data science and learn how to work with large datasets.', '2023-07-10', 'https://example.com/images/datascience.jpg', 0, 0);
-INSERT INTO event (event_name, event_description, event_time, event_image, event_participants, event_status) VALUES ('Python Programming Course', 'Learn the fundamentals of Python programming and build your first projects.', '2023-08-01', 'https://example.com/images/pythoncourse.jpg', 0, 0);
-INSERT INTO event (event_name, event_description, event_time, event_image, event_participants, event_status) VALUES ('Cybersecurity Symposium', 'Hear from industry experts on the latest trends and strategies in cybersecurity.', '2023-09-05', 'https://example.com/images/cybersecurity.jpg', 0, 0);
+INSERT INTO event (event_name, event_description, event_time, event_image, event_participants, event_status) VALUES ('Web Development Workshop', 'Join us for a hands-on workshop covering the basics of web development.', '2023-05-20', 'https://placebeard.it/640x360', 0, 0);
+INSERT INTO event (event_name, event_description, event_time, event_image, event_participants, event_status) VALUES ('Virtual Career Fair', 'Connect with top employers in the tech industry from the comfort of your own home.', '2023-06-15', 'https://placebeard.it/640x360', 0, 0);
+INSERT INTO event (event_name, event_description, event_time, event_image, event_participants, event_status) VALUES ('Data Science Bootcamp', 'Get a comprehensive introduction to data science and learn how to work with large datasets.', '2023-07-10', 'https://placebeard.it/640x360', 0, 0);
+INSERT INTO event (event_name, event_description, event_time, event_image, event_participants, event_status) VALUES ('Python Programming Course', 'Learn the fundamentals of Python programming and build your first projects.', '2023-08-01', 'https://placebeard.it/640x360', 0, 0);
+INSERT INTO event (event_name, event_description, event_time, event_image, event_participants, event_status) VALUES ('Cybersecurity Symposium', 'Hear from industry experts on the latest trends and strategies in cybersecurity.', '2023-09-05', 'https://placebeard.it/640x360', 0, 0);
 
 

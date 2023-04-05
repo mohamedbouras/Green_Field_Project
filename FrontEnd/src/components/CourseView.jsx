@@ -10,12 +10,12 @@ function CourseView() {
   return (
     <>
     <NaveBaree/>
+
 {(courseData.length>0)  && <> <h1>{courseData[0].event_name}</h1>
     <p>{courseData[0].event_time}</p>
     <img src ={courseData[0].event_image} />
     <p>{courseData[0].description}</p>
     <h2>Number of participants : {courseData[0].event_participants}</h2></>}
-    
     <EFouuter/>
     </>
   )

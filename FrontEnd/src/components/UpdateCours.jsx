@@ -8,7 +8,7 @@ import { useLocation } from 'react-router-dom';
 function UpdateCours() {
 const location = useLocation()
 const {courseData} = location.state
-console.log(courseData,"hiiiiiiiiiiiiiiiiiiiiiiiiii")
+console.log(courseData)
 const [eventName, setEventName] = useState(courseData. event_name)
 const [eventDescription, setEventDescription] = useState(courseData.event_description)
 const [eventParticipants, setEventParticipants] = useState(courseData.event_participants)

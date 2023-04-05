@@ -6,27 +6,30 @@ import { Route, Routes } from 'react-router-dom'
 import Profile from "./components/Profile.jsx"
 import MyCoursesList from './components/MyCoursesList.jsx'
 import CourseView from './components/CourseView.jsx'
-import ScrollToTopButton from "./components/ScrollToTopButton.jsx"
+import { useState,useEffect } from 'react'
+import LandingPage from './components/LandingPage'
 import UpdateCours from "./components/UpdateCours.jsx"
-
-
-
 function App() {
+  const [user, setuser] = useState(JSON.parse(localStorage.getItem('user')));
 
-
-  return (
-    
+  useEffect(() => {
+    localStorage.setItem('user', JSON.stringify(user));
+  }, [user]);
+  console.log(user);
+  return ( 
    <div>
+   
       <Routes>
-        <Route path='/' element={<><Containerr/> <ScrollToTopButton/> </>} />
+       <Route path='/addCours' element={<><AddCours /> <ScrollToTopButton/> </>}/>
+       <Route path='/profile' element={<><Profile  user={user}/> <ScrollToTopButton/> </> } />
+        <Route path="/mylist" element ={<><MyCoursesList user={user}/> <ScrollToTopButton/> </>}/>
         <Route path='/UpCours' element={<><UpdateCours/> <ScrollToTopButton/> </>} />
-        <Route path='/addCours' element={<><AddCours /> <ScrollToTopButton/> </>}/>
-        <Route path='/profile' element={<><Profile /> <ScrollToTopButton/> </> } />
-        <Route path="/mylist" element ={<><MyCoursesList/> <ScrollToTopButton/> </>}/>
         <Route path = "/courseview" element = {<><CourseView/><ScrollToTopButton/> </>}/>
         <Route path='/container' element={<><Containerr/> <ScrollToTopButton/></>} />
-        <Route path = "/" element = {<Login/>}  />
+        <Route path = "/landingPage" element = {<><LandingPage /><ScrollToTopButton/> </>}/>
+        <Route path = "/" element = {<Login setuser={setuser}/>}  />
       </Routes>
+   
     </div> 
   )
 }

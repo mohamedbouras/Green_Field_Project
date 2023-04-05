@@ -1,0 +1,2 @@
+'4', 'rahma', 'rahma@xdxd.com', 'hzareafaeafh123', 'student', 'urlirlurl'
+http://127.0.0.1:4000/api/user/getuserbypassword/rahma@xdxd.com/hzareafaeafh123

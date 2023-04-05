@@ -8,7 +8,7 @@ function MyCoursesList() {
     const [eventUserData, setEventUserData] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://127.0.0.1:4000/api/events_users/user/${1}`)
+        axios.get(`http://127.0.0.1:4000/api/events_users/user/${4}`)
             .then(res => { setEventUserData(res.data)})
             .catch(err => { console.log(err) })
     }, [])

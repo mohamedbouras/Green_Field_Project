@@ -1,5 +1,7 @@
 const users = require("../database/models/Users");
 const multer = require('multer')
+const bcrypt = require("bcrypt")
+
 
     module.exports = {
   //method to fetch all users 
@@ -11,8 +13,12 @@ const multer = require('multer')
   },
 
   //method to add a user to the database 
-  addUser: function (req, res) {
-    
+  addUser: async function (req, res) {
+    // console.log(typeof(req.body.user_password))
+        try {       
+        const salt = await bcrypt.genSalt(10)
+        const hashedPassword = await bcrypt.hash(req.body.user_password,salt)
+        req.body.user_password =  hashedPassword 
     users.add(
       function (err, results) {
         if (err) res.status(500).send(err);
@@ -20,7 +26,42 @@ const multer = require('multer')
       },
       req.body
      
-    );
+    )}catch(err){
+      console.log(err)
+      res.status(500).send(err)    
+    }
+    }
+  ,
+  getOneUserLogin: function(req,res){
+    users.getOneByEmail((err,results)=>{
+      if (err){
+        console.log(err)
+        res.status(500).json(err)
+      }
+      res.status(200).json(results)
+    },[req.params.email]) 
+  },
+
+  handleLogin: function(req,res){
+     users.getOneByEmail((err,results)=>{
+      if(err){
+        console.log(err)
+        res.status(500).json(err)
+      }
+      if (results.length){
+        bcrypt.compare(req.body.user_password,results[0].user_password,(error,result)=>{
+          if (error){
+            console.log(error)
+            res.status(500).json(error)
+          }
+          if(result){
+            res.status(200).json({success:true,message:results[0]})
+          }else{
+            res.status(201).json({success:false,message:"login failure"})
+          }
+        }) 
+      }
+     },[req.body.user_email])  
   },
 
   //method to get one user by id.

@@ -9,7 +9,6 @@ const Containerr = () => {
   const [data,setData] = useState([])
   const getAll = () => {
     axios.get("http://localhost:4000/api/events/getAll").then(({data})=>{
-      console.log(data,'hi')
       setData(data)
 
     }).catch((err)=>{

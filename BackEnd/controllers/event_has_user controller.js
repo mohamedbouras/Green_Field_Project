@@ -2,7 +2,7 @@ const { createAUserToEvent, getAllTheEvents, getEventbyId, deleteUserFromEvent, 
 
 module.exports={
     createUserEvent: (req,res)=>{
-        const {event_id, user_id} = req.body
+        const {event_id, user_id,action_type} = req.body
         getEventbyId((err,results)=>{
             if (err){
                 console.log(err)
@@ -21,7 +21,7 @@ module.exports={
                     res.status(500).send("there is an err")
                 } 
                 res.status(200).send("matching created")
-            },event_id, user_id)}
+            },event_id, user_id,action_type)}
         },event_id)   
     },
     getAllEvents:(req,res)=>{

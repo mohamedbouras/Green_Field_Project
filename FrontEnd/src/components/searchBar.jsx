@@ -4,7 +4,6 @@ import { InputGroup, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 const SearchBar = ({ data }) => {
-
   const [teachers, setTeachers] = useState("")
   const [courses, setCourses] = useState("")
   const [courseDates, setCourseDates] = useState("")

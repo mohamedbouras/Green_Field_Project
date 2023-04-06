@@ -1,7 +1,9 @@
 import React from 'react';
 import NaveBaree from './NaveBaree';
 import EFouuter from './EFouuter';
-import UpdateUser from './UpdateUser.jsx';
+import {Container,Button} from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+
 const styles = {
   container: {
     maxWidth: '800px',
@@ -27,16 +29,39 @@ const styles = {
 };
 
 const Profile = ({user}) => {
+  const navigate = useNavigate()
   return (
     <div>
       <NaveBaree />
-      <div style={styles.container}>
-        <h1 style={styles.h1}> Name : {user.user_name}</h1>
-        <p style={styles.p}> Email :   {user.user_email}</p>
-        <p style={styles.p}> Type :   {user.user_type }</p>
-        <img src={user.user_image} />
-      </div>
-      <UpdateUser/>
+      <Container>
+       
+      <section className="section about-section gray-bg mt-5" id="about">
+            <div className="container">
+                <div className="row align-items-center flex-row-reverse">
+                    <div className="col-lg-6">
+                        <div className="about-text go-to">
+                            <h3 className="dark-color">{user.user_name}</h3>
+                            <h4 className="theme-color lead">{user.user_type }</h4>
+                            <h5>{user.user_email }</h5>
+                            <p>{user.user_description }</p>
+                           
+                        </div>
+                    </div>
+                    <div className="col-lg-6">
+                        <div className="about-avatar">
+                            <img src={user.user_image} width="250px" className='my-5 ' style={{borderRadius:"50%"}}/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div className="d-grid">
+          <Button variant="dark" onClick={() => navigate('/Updateprofile',{state:{UserP:user}})}>
+            Update My Profile
+          </Button>
+        </div>
+      </Container>
       <EFouuter/>
       
     </div>

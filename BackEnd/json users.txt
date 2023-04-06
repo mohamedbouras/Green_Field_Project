@@ -1,0 +1,50 @@
+{
+"user_name": "john_smith" ,
+"user_email": "john.smith@example.com",
+"user_password": "password123",
+"user_type": "teacher" ,
+"user_image":"https://example.com/profiles/john_smith.jpg"
+}
+----------------------------
+{
+"user_name":  "jane_doe",
+"user_email": "jane.doe@example.com" ,
+"user_password": "letmein",
+"user_type": "student" ,
+"user_image":"https://example.com/profiles/jane_doe.jpg"
+
+}
+----------------------------
+{
+"user_name": "bob_jones" ,
+"user_email": "bob.jones@example.com" ,
+"user_password": "12345678",
+"user_type":  "student",
+"user_image":"https://example.com/profiles/sara_smith.jpg"
+
+}
+----------------------------
+{
+"user_name": "timothy_brown" ,
+"user_email": "timothy.brown@example.com" ,
+"user_password": "my_password",
+"user_type": "student" ,
+"user_image":"https://example.com/profiles/sara_smith.jpg"
+
+}
+----------------------------
+{
+"user_name": "john_smith" ,
+"user_email": "john.smith@example.com" ,
+"user_password": "password123",
+"user_type": "teacher" ,
+"user_image":"https://example.com/profiles/john_smith.jpg"
+
+}
+
+*************************************SQL Matching ************************************************
+INSERT INTO event_has_user (event_id, user_id) VALUES (?, ?);
+INSERT INTO event_has_user (event_id, user_id) VALUES (?, ?);
+INSERT INTO event_has_user (event_id, user_id) VALUES (?, ?);
+INSERT INTO event_has_user (event_id, user_id) VALUES (?, ?);
+INSERT INTO event_has_user (event_id, user_id) VALUES (?, ?);

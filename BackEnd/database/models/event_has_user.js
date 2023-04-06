@@ -19,5 +19,12 @@ module.exports={
     deleteUserFromEvent: (callback,event_id,user_id)=>{
         let sql = `delete from event_has_user where event_id = ? and user_id=?;`
         connection.query(sql,[event_id , user_id],callback)
+    },
+    getEventsByUserId : (callback,user_id)=>{
+        let sql = `select v.* , u.* from event_has_user e
+        inner join user u on e.user_id = u.user_id
+        inner join event v on v.event_id = e.event_id 
+        where e.user_id =?;`
+        connection.query(sql,[user_id],callback)
     }
 }

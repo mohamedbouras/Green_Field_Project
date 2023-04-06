@@ -10,6 +10,7 @@ import { useState,useEffect } from 'react'
 import LandingPage from './components/LandingPage'
 import UpdateCours from "./components/UpdateCours.jsx"
 import UpdateUser  from './components/UpdateUser'
+import Register from './components/Register'
 function App() {
   const [user, setuser] = useState(JSON.parse(localStorage.getItem('user')));
 
@@ -29,6 +30,8 @@ function App() {
         <Route path = "/courseview" element = {<><CourseView/><ScrollToTopButton/> </>}/>
         <Route path='/container' element={<><Containerr/> <ScrollToTopButton/></>} />
         <Route path = "/landingPage" element = {<><LandingPage /><ScrollToTopButton/> </>}/>
+        <Route path = "/register" element ={<><Register getuser = {setuser}/><ScrollToTopButton/></>}></Route>
+
         <Route path = "/" element = {<Login setuser={setuser}/>}  />
       </Routes>
    

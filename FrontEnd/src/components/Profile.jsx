@@ -34,7 +34,9 @@ const Profile = ({user}) => {
     <div>
       <NaveBaree />
       <Container>
-       
+      <div style={{background: "linear-gradient(to bottom right, #1c1c1c, #222222)", color: "#fff", padding: "20px",height:"100%"}} className='mt-5'>
+
+
       <section className="section about-section gray-bg mt-5" id="about">
             <div className="container">
                 <div className="row align-items-center flex-row-reverse">
@@ -49,7 +51,7 @@ const Profile = ({user}) => {
                     </div>
                     <div className="col-lg-6">
                         <div className="about-avatar">
-                            <img src={user.user_image} width="250px" className='my-5 ' style={{borderRadius:"50%"}}/>
+                            <img src={user.user_image} width="250px" className='my-5' style={{borderRadius:"50%",marginLeft:"15%"}}/>
                         </div>
                     </div>
                 </div>
@@ -61,7 +63,9 @@ const Profile = ({user}) => {
             Update My Profile
           </Button>
         </div>
+        </div>
       </Container>
+      
       <EFouuter/>
       
     </div>

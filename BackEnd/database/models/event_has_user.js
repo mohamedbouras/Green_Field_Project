@@ -1,9 +1,9 @@
 const mysql = require("mysql2")
 const connection = require("../index");
 module.exports={
-    createAUserToEvent:(callback,event_id, user_id)=>{
-        let sql = "insert into event_has_user(event_id,user_id) values (?,?);"
-        connection.query(sql,[event_id,user_id],callback)
+    createAUserToEvent:(callback,event_id, user_id,action_type)=>{
+        let sql = "insert into event_has_user(event_id,user_id,action_type) values (?,?,?);"
+        connection.query(sql,[event_id,user_id,action_type],callback)
     },
     getAllTheEvents : (callback)=>{
         let sql = "select * from event_has_user;"

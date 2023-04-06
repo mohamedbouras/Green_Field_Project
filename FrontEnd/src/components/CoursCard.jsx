@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-
 import { useNavigate } from 'react-router-dom';
-import CourseView from './CourseView';
 import axios from 'axios';
 const CoursCard = ({data}) => {
   const [courseData,setCourseData] = useState([])
@@ -28,11 +26,11 @@ const CoursCard = ({data}) => {
   return (
 
         <Card style={{ width: '18rem' }}>
-          <Card.Img variant="top" src= {data.event_image}/>
+          <Card.Img variant="top" src= {data.event_image} style={{width:'250px',height:'160px'}}/>
           <Card.Body>
             <Card.Title>{data.event_name}</Card.Title>
             <Card.Text>
-              {data.event_description}
+              {data.event_description.substring(0, 91)}
             </Card.Text>
             <Button variant="primary" onClick={handleCourseUp}>up Course</Button>
             <Button variant="primary" onClick={()=>{handleCourseView(data.event_id)}}>View Course</Button>
@@ -42,4 +40,4 @@ const CoursCard = ({data}) => {
   )
 }
 
-export default CoursCard
+export default CoursCard  

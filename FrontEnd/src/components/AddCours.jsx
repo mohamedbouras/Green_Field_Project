@@ -11,7 +11,7 @@ function AddCours() {
   const [eventImage, setEventImage] = useState('');
   const [eventStatus, setEventStatus] = useState(false);
   const [file, setFile] = useState('');
-
+  const user =JSON.parse(localStorage.getItem('user'))
   const handleChoFile = (e) => {
     setFile(e.target.files[0]);
   };
@@ -58,7 +58,7 @@ function AddCours() {
       setEventDescription(editorRef.current.getContent());
     }
   };
-console.log(eventDescription)
+console.log(user.user_id)
   return (<>
     < NaveBaree/>
     <br />

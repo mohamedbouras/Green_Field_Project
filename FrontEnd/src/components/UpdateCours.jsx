@@ -12,7 +12,6 @@ console.log(courseData)
 const [eventName, setEventName] = useState(courseData. event_name)
 const [eventDescription, setEventDescription] = useState(courseData.event_description)
 const [eventParticipants, setEventParticipants] = useState(courseData.event_participants)
-const [eventImage, setEventImage] = useState('')
 const [eventStatus, setEventStatus] = useState(false)
 const [file, setFile] = useState('')
 const handleChoFile = (e) => {
@@ -71,7 +70,6 @@ const editorRef = useRef(null);
             Course Name :{' '}
             <input
               type="text"
-            
               defaultValue={eventName}
               onChange={(event) => setEventName(event.target.value)}
             /><br />
@@ -83,7 +81,6 @@ const editorRef = useRef(null);
             <input 
             defaultValue={eventParticipants}
               type="number" // changed to number type
-              value={eventParticipants}
               onChange={(event) => setEventParticipants(event.target.value)}
             />
             <Editor 

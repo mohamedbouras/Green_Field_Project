@@ -9,6 +9,7 @@ import CourseView from './components/CourseView.jsx'
 import { useState,useEffect } from 'react'
 import LandingPage from './components/LandingPage'
 import UpdateCours from "./components/UpdateCours.jsx"
+import UpdateUser  from './components/UpdateUser'
 function App() {
   const [user, setuser] = useState(JSON.parse(localStorage.getItem('user')));
 
@@ -22,6 +23,7 @@ function App() {
       <Routes>
        <Route path='/addCours' element={<><AddCours /> <ScrollToTopButton/> </>}/>
        <Route path='/profile' element={<><Profile  user={user}/> <ScrollToTopButton/> </> } />
+       <Route path='/Updateprofile' element={<><UpdateUser user={user}/> <ScrollToTopButton/> </> } />
         <Route path="/mylist" element ={<><MyCoursesList user={user}/> <ScrollToTopButton/> </>}/>
         <Route path='/UpCours' element={<><UpdateCours/> <ScrollToTopButton/> </>} />
         <Route path = "/courseview" element = {<><CourseView/><ScrollToTopButton/> </>}/>

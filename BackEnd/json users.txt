@@ -3,7 +3,8 @@
 "user_email": "john.smith@example.com",
 "user_password": "password123",
 "user_type": "teacher" ,
-"user_image":"https://example.com/profiles/john_smith.jpg"
+"user_image":"https://example.com/profiles/john_smith.jpg",
+"user_description":"user Description"
 }
 ----------------------------
 {
@@ -11,7 +12,8 @@
 "user_email": "jane.doe@example.com" ,
 "user_password": "letmein",
 "user_type": "student" ,
-"user_image":"https://example.com/profiles/jane_doe.jpg"
+"user_image":"https://example.com/profiles/jane_doe.jpg",
+"user_description":"user Description"
 
 }
 ----------------------------
@@ -20,8 +22,8 @@
 "user_email": "bob.jones@example.com" ,
 "user_password": "12345678",
 "user_type":  "student",
-"user_image":"https://example.com/profiles/sara_smith.jpg"
-
+"user_image":"https://example.com/profiles/sara_smith.jpg",
+"user_description":"user Description"
 }
 ----------------------------
 {
@@ -29,8 +31,8 @@
 "user_email": "timothy.brown@example.com" ,
 "user_password": "my_password",
 "user_type": "student" ,
-"user_image":"https://example.com/profiles/sara_smith.jpg"
-
+"user_image":"https://example.com/profiles/sara_smith.jpg",
+"user_description":"user Description"
 }
 ----------------------------
 {
@@ -38,8 +40,8 @@
 "user_email": "john.smith@example.com" ,
 "user_password": "password123",
 "user_type": "teacher" ,
-"user_image":"https://example.com/profiles/john_smith.jpg"
-
+"user_image":"https://example.com/profiles/john_smith.jpg",
+"user_description":"user Description"
 }
 
 *************************************SQL Matching ************************************************

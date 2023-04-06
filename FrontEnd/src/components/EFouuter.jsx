@@ -14,23 +14,11 @@ const EFouuter = () => {
     <MDBFooter className='text-center mt-5' color='white' bgColor='dark'>
       <MDBContainer className='p-4'>
 
-        <section className=''>
-          <form action=''>
-            <MDBRow className='d-flex justify-content-center'>
-              <MDBCol size="auto">
-                <MDBBtn outline color='light' type='submit' className='mb-4' disabled='true'>
-                  Green Field Project
-                </MDBBtn>
-              </MDBCol>
-            </MDBRow>
-          </form>
-        </section>
+      
 
         <section className='mb-4'>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum repellat quaerat
-            voluptatibus placeat nam, commodi optio pariatur est quia magnam eum harum corrupti dicta, aliquam
-            sequi voluptate quas.
+     Green Field Project 
           </p>
         </section>
 

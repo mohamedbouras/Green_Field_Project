@@ -18,7 +18,12 @@ const CoursCard = ({data}) => {
       console.log(err)
      })
   }
-
+  
+  function handleCourseUp(){
+   
+     navigate("/UpCours",{state:{courseData:data}})
+    
+ }
   return (
 
         <Card style={{ width: '18rem' }}>
@@ -29,6 +34,8 @@ const CoursCard = ({data}) => {
               {data.event_description}
             </Card.Text>
             <Button variant="primary" onClick={handleCourseView}>View Course</Button>
+    
+            <Button variant="primary" onClick={handleCourseUp}>up Course</Button>
           </Card.Body>
         </Card>
   )

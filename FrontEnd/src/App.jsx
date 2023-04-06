@@ -1,7 +1,7 @@
+import Containerr from "./components/Containerr.jsx"
 import Login from './components/Login'
-import Containerr from './components/Containerr'
 import ScrollToTopButton from './components/ScrollToTopButton'
-import AddCours from "./components/addCours.jsx"
+import AddCours from "./components/AddCours.jsx"
 import { Route, Routes } from 'react-router-dom'
 import Profile from "./components/Profile.jsx"
 import MyCoursesList from './components/MyCoursesList.jsx'

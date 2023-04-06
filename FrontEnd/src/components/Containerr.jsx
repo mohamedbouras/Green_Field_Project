@@ -10,6 +10,7 @@ const Containerr = () => {
   const getAll = () => {
     axios.get("http://localhost:4000/api/events/getAll").then(({data})=>{
       setData(data)
+
     }).catch((err)=>{
       console.log(err)
     })
@@ -23,7 +24,7 @@ const Containerr = () => {
       <Container className="mt-5">
         <Row lg={2}>
           <Col lg={3} >
-            <SearchBar/>
+            <SearchBar data={data} />
           </Col>
           <Col lg={9} >
           <Row  lg={9}>

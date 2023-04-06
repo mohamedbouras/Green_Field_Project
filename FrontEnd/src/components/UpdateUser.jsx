@@ -80,12 +80,13 @@ function UpdateUser() {
         />
       </InputGroup>
 
-      <InputGroup className="mb-3">
+      <InputGroup className="mb-3" >
         <Form.Control
           defaultValue={email}
           aria-label="Recipient's username"
           aria-describedby="basic-addon2"
           onChange={handleEmailChange}
+          disabled
           required
         />
         <InputGroup.Text id="basic-addon2">@example.com</InputGroup.Text>

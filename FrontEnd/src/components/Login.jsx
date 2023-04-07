@@ -2,7 +2,15 @@ import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { Container, Tabs, Tab, Button, Form, InputGroup, FormControl } from 'react-bootstrap';
+import './Login.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebookF, faTwitter, faGoogle, faGithub } from '@fortawesome/free-brands-svg-icons';
+
+
+
 function Login({setuser}) {
+ 
     const navigate = useNavigate()
     const [email ,setEmail] = useState("")
     const [password,setPasword] = useState("")
@@ -30,19 +38,57 @@ function Login({setuser}) {
         console.log(err)
       })
     }
-  return (
-    <div>
-        <form name = "login form" onSubmit={(e)=>handleSubmit(e)}>
-        <label >Email</label>
-        <input type = "email" placeholder="E-mail" name = "email" required onChange={(e)=>setEmail(e.target.value)}/>
-        <label >password</label>
-        <input type = "password" placeholder="password" name = "password" required onChange={(e)=>setPasword(e.target.value)}/>
-        <button type = "submit">Login</button>
-        <p>You don'have an account? Sign Up</p>
-        <button>Sign Up</button>
-         </form>
+  return (         <form onSubmit={(e)=>handleSubmit(e)}>
+    <h3>Login Page</h3>
+    <div className="mb-3">
+      <label>Email address</label>
+      <input
+        type="email"
+        className="form-control"
+        placeholder="Enter email"
+         required
+        onChange={(e)=>setEmail(e.target.value)}/>
     </div>
-  )
-}
+    <div className="mb-3">
+      <label>Password</label>
+      <input
+        type="password"
+        className="form-control"
+        placeholder="Enter password"
+        required
+        onChange={(e)=>setPasword(e.target.value)}/>
+    </div>
+    <div className="mb-3">
+      <div className="custom-control custom-checkbox">
+        <input
+          type="checkbox"
+          className="custom-control-input"
+          id="customCheck1"
+        />
+        <label className="custom-control-label" htmlFor="customCheck1">
+          Remember me
+        </label>
+      </div>
+    </div>
+    <div className="d-grid">
+      <button type="submit" className="btn btn-primary">
+        Login
+      </button>
+    </div>
+    <p className="forgot-password text-right">
+      Forgot <a href="#">password?</a>
+    </p>
+    <button onClick={()=>{navigate("/register")}}>Sign Up</button>
+  </form>)
+    
 
-export default Login
+
+    
+    
+
+
+   
+  
+}
+export default Login 
+

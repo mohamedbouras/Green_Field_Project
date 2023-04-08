@@ -105,7 +105,7 @@ function CourseView() {
           : true) ? 
           <Button variant="primary" disabled={infoCourse.length > 0 ? infoCourse[0].event_participants >= infoCourse.length - 1 ? true : false
             : true} className='w-100'> Course Available</Button> 
-            : <Button variant="primary" className='w-100' disabled={userExist?true:false} onClick={()=>{
+            :user.user_type==="student"&& <Button variant="primary" className='w-100' disabled={userExist?true:false} onClick={()=>{
               // axios to apply              
               console.log(courseData[0].event_id)
               console.log(user.user_id)

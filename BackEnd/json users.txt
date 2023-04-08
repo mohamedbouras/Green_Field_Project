@@ -50,3 +50,9 @@ INSERT INTO event_has_user (event_id, user_id) VALUES (?, ?);
 INSERT INTO event_has_user (event_id, user_id) VALUES (?, ?);
 INSERT INTO event_has_user (event_id, user_id) VALUES (?, ?);
 INSERT INTO event_has_user (event_id, user_id) VALUES (?, ?);
+
+{
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+          }

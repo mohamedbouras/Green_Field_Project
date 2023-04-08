@@ -3,26 +3,45 @@ import NaveBaree from './NaveBaree';
 import EFouuter from './EFouuter';
 import { useLocation } from 'react-router-dom';
 import Carousel from 'react-bootstrap/Carousel';
-import { Container, Card, Button } from "react-bootstrap"
-import Accordion from 'react-bootstrap/Accordion';
+import { Container,  Button } from "react-bootstrap"
 import { Image, List } from 'semantic-ui-react'
 import axios from 'axios';
 import './courseView.css'
 function CourseView() {
   console.log("rerendred");
   const user = JSON.parse(localStorage.getItem('user'))
+  const {token} =JSON.parse(localStorage.getItem('user'))
+  
   const [infoCourse, setinfoCourse] = useState([]);
+  const [userExist, setUserExist] = useState(false);
   const location = useLocation()
   const { courseData } = location.state
-
+  const [msg,setMsg] = useState('')
+  const alreadyExist =(arr)=>{
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].user_id === user.user_id) {
+        return true;
+      }
+    }
+    return false;
+  }
+ 
   useEffect(() => {
 
-    axios.get(`http://localhost:4000/api/events_users/event/${courseData[0].event_id}`).then((res) => {
+    axios.get(`http://localhost:4000/api/events_users/event/${courseData[0].event_id}`,{
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then((res) => {
       setinfoCourse(res.data)
+      setUserExist(alreadyExist(res.data))
     })
       .catch((err) => { console.log(err) })
   }, [])
-  console.log(infoCourse, "here");
+ 
+
+
+  
   return (
     <>
       <NaveBaree />
@@ -59,7 +78,8 @@ function CourseView() {
         </Carousel>
         {/* -------------------------------------------------------------- */}
         <hr className='mt-5' />
-        <h3>Are you interested in participating in this course like this People Press the button and learn ?</h3>
+        {(infoCourse.length > 0 ? infoCourse[0].event_participants >= infoCourse.length - 1 ? true : false
+          : true) && <h3>Are you interested in participating in this course  Press the button and learn ?</h3>}
 
         <List horizontal ordered className='mt-5'>
 
@@ -79,17 +99,28 @@ function CourseView() {
         </List>
 
 
-
-
-
         <hr className='mt-5' />
 
-
-        {!(infoCourse.length > 0 ? infoCourse[0].event_participants >= infoCourse.length - 1 ? true : false
+        {!(infoCourse.length > 0 ? infoCourse[0].event_participants >= infoCourse.length -1 ? true : false
           : true) ? 
           <Button variant="primary" disabled={infoCourse.length > 0 ? infoCourse[0].event_participants >= infoCourse.length - 1 ? true : false
             : true} className='w-100'> Course Available</Button> 
-            : <Button variant="primary" className='w-100' disabled={false} onClick={()=>{console.log('apply')}}> apply to the Cours </Button>
+            : <Button variant="primary" className='w-100' disabled={userExist?true:false} onClick={()=>{
+              // axios to apply              
+              console.log(courseData[0].event_id)
+              console.log(user.user_id)
+              axios.post("http://localhost:4000/api/events_users",{event_id:courseData[0].event_id,
+              user_id:user.user_id,
+              action_type:'Student'},{
+                headers: {
+                  Authorization: `Bearer ${token}`
+                }
+              }).then(res=>{setMsg("Succes Inscription"); window.location.reload();})
+              .catch(err=>setMsg("Field"))
+            }
+            }
+              
+              >{userExist?"You are already Saved":"apply to the Cours"} </Button>
         }
 
 
@@ -98,7 +129,7 @@ function CourseView() {
           : true) && <>
             <hr className='mt-5' />
             <div dangerouslySetInnerHTML={{ __html: courseData[0].event_description }} />  </>}
-
+            {msg}
       </Container>
 
       <EFouuter />

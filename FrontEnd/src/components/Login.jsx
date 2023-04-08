@@ -1,16 +1,24 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import { Container, Tabs, Tab, Button, Form, InputGroup, FormControl } from 'react-bootstrap';
+
 import './Login.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebookF, faTwitter, faGoogle, faGithub } from '@fortawesome/free-brands-svg-icons';
+
 
 
 
 function Login({setuser}) {
- 
+  
+    useEffect(() => {
+      window.history.pushState(null, null, '/');
+      window.addEventListener('popstate', () => {
+        window.history.pushState(null, null, '/');
+      });
+    }, []);
+
+
+
     const navigate = useNavigate()
     const [email ,setEmail] = useState("")
     const [password,setPasword] = useState("")
@@ -38,7 +46,7 @@ function Login({setuser}) {
         console.log(err)
       })
     }
-  return (         <form onSubmit={(e)=>handleSubmit(e)}>
+  return (         <form onSubmit={(e)=>handleSubmit(e)} className='mt-5'>
     <h3>Login Page</h3>
     <div className="mb-3">
       <label>Email address</label>

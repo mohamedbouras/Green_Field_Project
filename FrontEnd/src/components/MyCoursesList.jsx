@@ -5,10 +5,15 @@ import CoursCard from './CoursCard'
 import NaveBaree from './NaveBaree';
 import EFouuter from './EFouuter';
 const MyCoursesList = React.memo(({user})=> {  
+  const {token} =JSON.parse(localStorage.getItem('user'))
   console.log(user);
     const [eventUserData, setEventUserData] = useState([]);
     useEffect(() => {
-        axios.get(`http://127.0.0.1:4000/api/events_users/user/${user.user_id}`)
+        axios.get(`http://127.0.0.1:4000/api/events_users/user/${user.user_id}`,{
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          })
             .then(res => { setEventUserData(res.data)})
             .catch(err => { console.log(err) })
     }, [])

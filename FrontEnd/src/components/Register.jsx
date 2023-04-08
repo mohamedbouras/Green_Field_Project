@@ -35,8 +35,8 @@ function Register({getuser}) {
        try{ 
        const userRegister = {...user,user_image: await uploadImage()}
         const post = await axios.post("http://127.0.0.1:4000/api/user/add",userRegister)
-        console.log(post)
-        getuser(userRegister)
+        console.log('here',post.data)
+        getuser(post.data)
         navigate('/landingPage')
        }catch(err){
          console.log(err)
@@ -46,17 +46,17 @@ function Register({getuser}) {
 
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '20px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '20px' }} className='mt-5'>
     <form name="Register Form" onSubmit={handlePosting}>
       <h3 style={{ fontSize: '28px', marginBottom: '20px' }}>Sign up here</h3>
       <label style={{ fontSize: '18px', marginTop: '20px' }}>Name</label>
-      <input type="text" placeholder="name" name="user_name" onChange={(e) => setUser({ ...user, user_name: e.target.value })} style={{ fontSize: '18px', padding: '10px', marginTop: '10px', borderRadius: '5px', border: 'none', backgroundColor: '#f4f4f4', width: '100%', maxWidth: '400px', boxSizing: 'border-box' }} />
+      <input required type="text" placeholder="name" name="user_name" onChange={(e) => setUser({ ...user, user_name: e.target.value })} style={{ fontSize: '18px', padding: '10px', marginTop: '10px', borderRadius: '5px', border: 'none', backgroundColor: '#f4f4f4', width: '100%', maxWidth: '400px', boxSizing: 'border-box' }} />
       <label style={{ fontSize: '18px', marginTop: '20px' }}>E-mail</label>
-      <input type="email" placeholder="email" name="user_email" onChange={(e) => setUser({ ...user, user_email: e.target.value })} style={{ fontSize: '18px', padding: '10px', marginTop: '10px', borderRadius: '5px', border: 'none', backgroundColor: '#f4f4f4', width: '100%', maxWidth: '400px', boxSizing: 'border-box' }} />
+      <input required type="email" placeholder="email" name="user_email" onChange={(e) => setUser({ ...user, user_email: e.target.value })} style={{ fontSize: '18px', padding: '10px', marginTop: '10px', borderRadius: '5px', border: 'none', backgroundColor: '#f4f4f4', width: '100%', maxWidth: '400px', boxSizing: 'border-box' }} />
       <label style={{ fontSize: '18px', marginTop: '20px' }}>Password</label>
-      <input type="password" name="user_password" onChange={(e) => setUser({ ...user, user_password: e.target.value })} style={{ fontSize: '18px', padding: '10px', marginTop: '10px', borderRadius: '5px', border: 'none', backgroundColor: '#f4f4f4', width: '100%', maxWidth: '400px', boxSizing: 'border-box' }} />
+      <input required type="password" name="user_password" onChange={(e) => setUser({ ...user, user_password: e.target.value })} style={{ fontSize: '18px', padding: '10px', marginTop: '10px', borderRadius: '5px', border: 'none', backgroundColor: '#f4f4f4', width: '100%', maxWidth: '400px', boxSizing: 'border-box' }} />
       <label style={{ fontSize: '18px', marginTop: '20px' }}>Your Description</label>
-      <textarea type="text" placeholder="descriiption ..."  onChange={(e) => setUser({ ...user, user_description: e.target.value })} style={{ fontSize: '18px', padding: '10px', marginTop: '10px', borderRadius: '5px', border: 'none', backgroundColor: '#f4f4f4', width: '100%', maxWidth: '400px', boxSizing: 'border-box' }} />
+      <textarea required type="text" placeholder="descriiption ..."  onChange={(e) => setUser({ ...user, user_description: e.target.value })} style={{ fontSize: '18px', padding: '10px', marginTop: '10px', borderRadius: '5px', border: 'none', backgroundColor: '#f4f4f4', width: '100%', maxWidth: '400px', boxSizing: 'border-box' }} />
       <label style={{ fontSize: '18px', marginTop: '20px' }}>Specify your Role</label>
       <select name="user_type" value={user.user_type} onChange={(e) => { setUser({ ...user, user_type: e.target.value }) }} style={{ fontSize: '18px', padding: '10px', marginTop: '10px', borderRadius: '5px', border: 'none', backgroundColor: '#f4f4f4', width: '100%', maxWidth: '400px', boxSizing: 'border-box' }}>
 <option value="">Sign Up As ?</option>
@@ -66,6 +66,11 @@ function Register({getuser}) {
 <label style={{ fontSize: '18px', marginTop: '20px' }}>Upload your image</label>
 <input type="file" onChange={handleFile} style={{ fontSize: '18px', padding: '10px', marginTop: '10px', borderRadius: '5px', border: 'none', backgroundColor: '#f4f4f4', width: '100%', maxWidth: '400px', boxSizing: 'border-box' }} />
 <input type="submit" value="Sign Up" style={{ fontSize: '18px', padding: '10px', marginTop: '20px', borderRadius: '5px', border: 'none', backgroundColor: '#007bff', color: '#fff', width: '100%', maxWidth: '400px', cursor: 'pointer', boxSizing: 'border-box' }} />
+<input type="submit" value="Login" style={{ fontSize: '18px', padding: '10px', marginTop: '20px', borderRadius: '5px', border: 'none', backgroundColor: '#007bff', color: '#fff', width: '100%', maxWidth: '400px', cursor: 'pointer', boxSizing: 'border-box' }}
+onClick={()=>{
+  navigate('/')
+}}
+/>
 
   </form>
 </div>

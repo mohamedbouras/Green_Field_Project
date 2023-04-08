@@ -4,18 +4,19 @@ import './AddCours.css'
 import { Editor } from '@tinymce/tinymce-react';
 import NaveBaree from "./NaveBaree.jsx"
 import EFouuter from "./EFouuter.jsx"
+import { Alert } from 'react-bootstrap';
 function AddCours() {
+  const {token} =JSON.parse(localStorage.getItem('user'))
   const [eventName, setEventName] = useState('');
   const [eventDescription, setEventDescription] = useState('');
-  const [eventParticipants, setEventParticipants] = useState(0);
-  const [eventImage, setEventImage] = useState('');
+  const [msg, setMsg] = useState('');
+  const [eventParticipants, setEventParticipants] = useState(1);
   const [eventStatus, setEventStatus] = useState(false);
   const [file, setFile] = useState('');
   const user =JSON.parse(localStorage.getItem('user'))
   const handleChoFile = (e) => {
     setFile(e.target.files[0]);
   };
-
   const uploadImage = async () => {
     const form = new FormData();
     form.append('file', file);
@@ -34,6 +35,7 @@ function AddCours() {
 
   const addNew = async () => {
     try {
+      setMsg('1')
       const imageUrl = await uploadImage();
       const course = {
         event_name: eventName,
@@ -45,9 +47,24 @@ function AddCours() {
       console.log(course);
       const response = await axios.post(
         'http://localhost:4000/api/events/add',
-        course
+        course,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
       )
- 
+      console.log(response.data.insertId,user.user_id);
+      axios.post("http://localhost:4000/api/events_users",{event_id:response.data.insertId,
+      user_id:user.user_id,
+      action_type:"Teacher"},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      .then((res)=>{setMsg("Course Inserted")})
+      .catch((err)=>{})
     } catch (error) {
       console.log(error);
     }
@@ -76,6 +93,7 @@ console.log(user.user_id)
         <input type="file" onChange={(e) => handleChoFile(e)} /> <br />
         Participants :{' '}
         <input
+          min={1}
           type="number" // changed to number type
           value={eventParticipants}
           onChange={(event) => setEventParticipants(event.target.value)}
@@ -95,6 +113,10 @@ console.log(user.user_id)
       }}
     />
     <center><button onClick={log}>Confirm corse</button></center><br /><br />
+    {msg.length===1 ?   <center><h3>Looding ... </h3></center> : ""}
+    <Alert  variant={"success"} show={msg.length>1}>
+          <center><h3>{msg}</h3></center>
+        </Alert> <br />
         <button onClick={() => addNew()}>Submit</button>
       </div>
     </div>

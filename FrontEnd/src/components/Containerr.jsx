@@ -6,9 +6,15 @@ import SearchBar from "./searchBar.jsx"
 import EFouuter from "./EFouuter.jsx"
 import axios from 'axios'
 const Containerr = () => {
+  const {token} =JSON.parse(localStorage.getItem('user'))
   const [data,setData] = useState([])
   const getAll = () => {
-    axios.get("http://localhost:4000/api/events/getAll").then(({data})=>{
+    axios.get("http://localhost:4000/api/events/getAll",{
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then(({data})=>{
+      console.log(data);
       setData(data)
 
     }).catch((err)=>{
@@ -18,6 +24,7 @@ const Containerr = () => {
   useEffect (()=>{
     getAll()
     },[])
+   
   return (
     <div>
         <NaveBaree />
@@ -28,9 +35,6 @@ const Containerr = () => {
           </Col>
           <Col lg={9} >
           <Row  lg={9}>
-
-
-
             {data.length>0 && data.map((e,i)=>{
               return (
               <Col  className="mt-3" key = {i}>
@@ -38,17 +42,9 @@ const Containerr = () => {
             </Col>
               )
             })}
-            
-
-          
-            
-           
-          
-           
           </Row>
         </Col>
         </Row>
-
       </Container>
       <EFouuter/>
 

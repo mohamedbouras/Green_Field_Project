@@ -1,6 +1,11 @@
 const mysql = require("mysql2")
 const connection = require("../index");
 module.exports={
+    myFavorit : (callback,event_id, user_id)=>{
+        console.log("here",event_id,user_id);
+        let sql = `select * from event_has_user where event_id = ? and user_id=?`
+        connection.query(sql,[event_id , user_id],function (err,result){callback(err,result)})
+    },
     createAUserToEvent:(callback,event_id, user_id,action_type)=>{
         let sql = "insert into event_has_user(event_id,user_id,action_type) values (?,?,?);"
         connection.query(sql,[event_id,user_id,action_type],callback)
@@ -17,8 +22,8 @@ module.exports={
         connection.query(sql,[event_id],callback)
     },
     deleteUserFromEvent: (callback,event_id,user_id)=>{
-        let sql = `delete from event_has_user where event_id = ? and user_id=?;`
-        connection.query(sql,[event_id , user_id],callback)
+        let sql = `delete from event_has_user where event_id = ? and user_id=?`
+        connection.query(sql,[event_id , user_id],function (err,result){callback(err,result)})
     },
     getEventsByUserId : (callback,user_id)=>{
         let sql = `select v.* , u.* from event_has_user e

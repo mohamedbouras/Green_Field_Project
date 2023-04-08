@@ -19,7 +19,8 @@ module.exports = {
             else res.json(results)
         },[req.params.event_id])
     },
-    addEvent: function(req, res) {
+    addEvent: async function  (req, res) {
+        try {
         let yourDate = new Date()
         req.body.event_time = yourDate.toISOString().split('T')[0]
 
@@ -27,6 +28,10 @@ module.exports = {
             if(err) res.status(500).send(err);
             else res.json(results)
         },req.body)
+        } catch (error) {
+            console.log(error);
+        }
+        
     },
     updateOneEvent:function(req, res) {
         event.upOne(function(err, results) {

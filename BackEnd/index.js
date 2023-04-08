@@ -38,3 +38,50 @@ app.use('/api',event_has_user_router)
 app.listen(4000,()=>{
     console.log('listenning on 4000');
 })
+
+
+
+
+
+
+
+
+
+// handleLogin: function(req,res){ 
+//   const jwtSecret = 'yAjT0x5cV6meqgMI8CfJl5Cef2sEGAESmMBpl7QkFBeQyIQnZO' 
+//     const {token} =req.cookies
+//     console.log(token)
+//      if (token){
+//         jwt.verify(token,jwtSecret,(err,result)=>{
+//            if(err){
+//             console.log(err)
+//             res.status(403).send("invalid access token")
+//            }
+//            res.status(200).json({...result,success:true})
+//          })
+//      }
+//     else{
+//     users.getOneByEmail((err,results)=>{
+//      if(err){
+//        console.log(err)
+//        res.status(500).json(err)
+//      }
+//      if (results.length){
+//        bcrypt.compare(req.body.user_password,results[0].user_password,(error,result)=>{
+//          if (error){
+//            console.log(error)
+//            res.status(500).json(error)
+//          }
+//          if(result){
+//            var token =  jwt.sign(results[0],jwtSecret)
+//            res.cookie('token',token,{httpOnly:true}) 
+//            res.status(200).json({success:true,message:{...results[0],token:token}})
+           
+//          }else{
+//            res.status(400).json({success:false,message:"login failure"})
+//          }
+//        }) 
+//      }
+//     },[req.body.user_email])
+//   }  
+//  }

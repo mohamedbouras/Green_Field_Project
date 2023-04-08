@@ -1,7 +1,8 @@
 const users = require("../database/models/Users");
 const multer = require('multer')
 const bcrypt = require("bcrypt")
-
+const jwt = require ("jsonwebtoken")
+require('dotenv').config();
 
     module.exports = {
   //method to fetch all users 
@@ -14,7 +15,6 @@ const bcrypt = require("bcrypt")
 
   //method to add a user to the database 
   addUser: async function (req, res) {
-    // console.log(typeof(req.body.user_password))
         try {       
         const salt = await bcrypt.genSalt(10)
         const hashedPassword = await bcrypt.hash(req.body.user_password,salt)
@@ -22,7 +22,10 @@ const bcrypt = require("bcrypt")
     users.add(
       function (err, results) {
         if (err) res.status(500).send(err);
-        else res.status(201).json(results);
+        else {
+          var token =  jwt.sign(req.body,process.env.ACCESS_TOKEN_SECRET)
+          delete req.body.user_password
+          res.status(201).json({...req.body,token:token,user_id:results.insertId});}
       },
       req.body
      
@@ -42,27 +45,32 @@ const bcrypt = require("bcrypt")
     },[req.params.email]) 
   },
 
-  handleLogin: function(req,res){
-     users.getOneByEmail((err,results)=>{
-      if(err){
-        console.log(err)
-        res.status(500).json(err)
-      }
-      if (results.length){
-        bcrypt.compare(req.body.user_password,results[0].user_password,(error,result)=>{
-          if (error){
-            console.log(error)
-            res.status(500).json(error)
-          }
-          if(result){
-            res.status(200).json({success:true,message:results[0]})
-          }else{
-            res.status(201).json({success:false,message:"login failure"})
-          }
-        }) 
-      }
-     },[req.body.user_email])  
-  },
+  handleLogin: function(req,res){ 
+    users.getOneByEmail((err,results)=>{
+     if(err){
+       console.log(err)
+       res.status(500).json(err)
+     }else{
+      bcrypt.compare(req.body.user_password,results[0].user_password,(error,result)=>{
+        if (error){
+          console.log(error)
+          res.status(500).json(error)
+        }
+        if(result){
+          var token =  jwt.sign(results[0],process.env.ACCESS_TOKEN_SECRET)
+           delete results[0].user_password
+          res.status(200).json({success:true,message:{...results[0],token:token}})
+          
+        }else{
+          res.status(400).json({success:false,message:"login failure"})
+        }
+      }) 
+
+     }
+    
+    },[req.body.user_email])
+  
+ },
 
   //method to get one user by id.
   getOneUser: function (req, res) {

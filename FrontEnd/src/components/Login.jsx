@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { Container, Tabs, Tab, Button, Form, InputGroup, FormControl } from 'react-bootstrap';
 import './Login.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebookF, faTwitter, faGoogle, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -78,7 +78,10 @@ function Login({setuser}) {
     <p className="forgot-password text-right">
       Forgot <a href="#">password?</a>
     </p>
-    <button onClick={()=>{navigate("/register")}}>Sign Up</button>
+    <button onClick={()=>{navigate("/register")}}>
+  <FontAwesomeIcon icon={faPlus} />
+  Sign Up
+</button>
   </form>)
     
 

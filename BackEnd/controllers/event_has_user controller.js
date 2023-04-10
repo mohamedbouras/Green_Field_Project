@@ -1,6 +1,17 @@
-const { createAUserToEvent, getAllTheEvents, getEventbyId, deleteUserFromEvent, getEventsByUserId,myFavorit} = require("../database/models/event_has_user")
+const { createAUserToEvent, getAllTheEvents, getEventbyId, deleteUserFromEvent, getEventsByUserId,myFavorit,getEventByTeacherName} = require("../database/models/event_has_user")
 
 module.exports={
+    getEventsofTeacher : (req,res)=>{
+        const user_name = req.params.teacherName
+        getEventByTeacherName((err,results)=>{
+            if (err){
+                console.log(err)
+                res.status(500).json(err)
+            }
+            res.status(200).json(results)
+        },[user_name])
+
+    },
     getfav:(req,res)=>{
         const {event_id, user_id} = req.body
         console.log(req.body);

@@ -5,6 +5,10 @@ import CoursCard from './CoursCard'
 import NaveBaree from './NaveBaree';
 import EFouuter from './EFouuter';
 const MyCoursesList = React.memo(({user})=> {  
+  const [toggle,setToggle]=useState(false)
+  const handleToggle= ()=>{
+    setToggle(!toggle)
+  }  
   const {token} =JSON.parse(localStorage.getItem('user'))
   console.log(user);
     const [eventUserData, setEventUserData] = useState([]);
@@ -27,9 +31,10 @@ const MyCoursesList = React.memo(({user})=> {
             <Row lg={9}>
                 {eventUserData.map((e,i)=>{
                      return (<Col className="mt-3" key ={i}>
-                               <CoursCard data = {e}/>
+                               <CoursCard data = {e} handleToggle={handleToggle}/>
                             </Col>)
                 })}
+                {eventUserData.length===0 &&  <div style={{width:'100%',height:"570px"}} className='mt-5'> <h3 ><center className='mt-5'>No Courses Yet</center></h3></div >}
             </Row>
             </Container>
             

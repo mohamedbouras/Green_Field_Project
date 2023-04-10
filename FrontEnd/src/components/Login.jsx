@@ -9,7 +9,7 @@ import './Login.css'
 
 
 function Login({setuser}) {
-  
+   const [msg,setMsg]=useState('')
     useEffect(() => {
       window.history.pushState(null, null, '/');
       window.addEventListener('popstate', () => {
@@ -39,14 +39,21 @@ function Login({setuser}) {
             setuser(res.data.message)
           }
           else{
-            alert("check Email or Password")
+            setMsg("Check Your Email or Password")
           }
-      })
-      .catch(err=>{
+        })
+        .catch(err=>{
         console.log(err)
+        setMsg("Check  Your Email or Password")
       })
     }
-  return (         <form onSubmit={(e)=>handleSubmit(e)} className='mt-5'>
+
+    const handelEmail=(e)=>{
+      /^[a-z0-9.-_]+@[a-z0-9.-_]+\.[a-z]{1,8}$/i.test(e.target.value)? setMsg("") : setMsg("Email not Valide");
+      setEmail(e.target.value)
+    }
+  return (        
+     <form onSubmit={(e)=>handleSubmit(e)} className='mt-5'>
     <h3>Login Page</h3>
     <div className="mb-3">
       <label>Email address</label>
@@ -55,7 +62,10 @@ function Login({setuser}) {
         className="form-control"
         placeholder="Enter email"
          required
-        onChange={(e)=>setEmail(e.target.value)}/>
+        onChange={(e)=>{
+          /^[a-z0-9.-_]+@[a-z0-9.-_]+\.[a-z]{1,8}$/i.test(e.target.value)? setMsg("") : setMsg("Email not Valide");
+        
+        setEmail(e.target.value)}}/>
     </div>
     <div className="mb-3">
       <label>Password</label>
@@ -68,6 +78,7 @@ function Login({setuser}) {
     </div>
     <div className="mb-3">
       <div className="custom-control custom-checkbox">
+        <h3 style={{color:'red'}}>{msg}</h3> <br />
         <input
           type="checkbox"
           className="custom-control-input"

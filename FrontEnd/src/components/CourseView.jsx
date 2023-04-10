@@ -11,7 +11,6 @@ function CourseView() {
   console.log("rerendred");
   const user = JSON.parse(localStorage.getItem('user'))
   const {token} =JSON.parse(localStorage.getItem('user'))
-  
   const [infoCourse, setinfoCourse] = useState([]);
   const [userExist, setUserExist] = useState(false);
   const location = useLocation()

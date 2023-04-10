@@ -1,6 +1,13 @@
 const mysql = require("mysql2")
 const connection = require("../index");
 module.exports={
+    getEventByTeacherName: (callback,user_name)=>{
+        let sql= `SELECT u.user_name,e.* FROM event_has_user eu
+        inner join user u on u.user_id = eu.user_id
+        inner join event e on e.event_id = eu.event_id
+        WHERE action_type = 'teacher' and u.user_name LIKE ?;`
+        connection.query(sql,[`%${user_name}%`],callback)
+    },
     myFavorit : (callback,event_id, user_id)=>{
         console.log("here",event_id,user_id);
         let sql = `select * from event_has_user where event_id = ? and user_id=?`

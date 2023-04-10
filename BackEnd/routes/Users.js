@@ -6,7 +6,7 @@ const { getAllUsers, addUser, getOneUser, deleteUser,updateUser, uploadFile, get
 router.get("/getuserbyemail/:email",getOneUserLogin)
 
 // GET request to fetch all users
-router.get('/getAll',authorization, getAllUsers);
+router.get('/getAll', getAllUsers);
 
 // GET request for one user
 router.get('/:id',authorization, getOneUser);

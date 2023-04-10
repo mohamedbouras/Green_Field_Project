@@ -1,6 +1,8 @@
 const conn = require("../index");
 
 module.exports = {
+
+
   //a function which fetches all the users.
   getAll: function (callback) {
     const sql = "SELECT * FROM `User`";

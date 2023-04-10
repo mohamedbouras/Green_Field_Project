@@ -7,6 +7,7 @@ import { useLocation } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 function UpdateUser() {
+  const {token} =JSON.parse(localStorage.getItem('user'))
   const location = useLocation()
   const {UserP} = location.state
   const [name, setName] = useState(UserP.user_name);
@@ -55,7 +56,12 @@ function UpdateUser() {
       console.log(data,"befor put");
       const response = await axios.put(
         'http://localhost:4000/api/user/'+UserP.user_id,
-        data
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
       );
       const newUser =JSON.parse(localStorage.getItem('user'))
       localStorage.setItem('user', JSON.stringify({...newUser,...data}));

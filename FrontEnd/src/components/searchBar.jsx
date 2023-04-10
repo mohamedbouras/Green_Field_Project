@@ -1,12 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Accordion from 'react-bootstrap/Accordion';
 import { InputGroup, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
-const SearchBar = ({ data }) => {
+import axios from 'axios';
+const SearchBar = ({ data ,getData}) => {
   const [teachers, setTeachers] = useState("")
   const [courses, setCourses] = useState("")
   const [courseDates, setCourseDates] = useState("")
+  const [search , setSearch] = useState("")
+  const {token} =JSON.parse(localStorage.getItem('user'))
+  console.log(teachers)
 
   const handelTeacher = (event) => {
     setTeachers(event.target.value)
@@ -20,17 +24,23 @@ const SearchBar = ({ data }) => {
   }
 
   const filterByTeacher = () => {
-    const filteredData = data.filter((course) => course.event_participants.includes(teachername)
-    );
-    console.log(filteredData);
-
+   axios.get(`http://127.0.0.1:4000/api/events_users/user/search/${teachers}`,{
+    headers: {
+      Authorization:`Bearer ${token}`
+    }})
+   .then(res=>{
+    setCourses(res.data)
+    getData(res.data)
+    console.log(res.data)
+   }).catch(err=>{
+    console.log(err)})
   };
 
   const filterByCourseName = () => {
     const filteredData = data.filter((course) => course.event_name.toLowerCase().includes(courses.toLowerCase())
     );
-    console.log(filteredData);
-
+    getData(filteredData);
+    
   };
 
 
@@ -71,14 +81,18 @@ const SearchBar = ({ data }) => {
       return isDateGreaterOrEqual(courseTime, filterTime)
 
     });
-    console.log(filteredData, 'grgrg');
+    getData(filteredData);
 
   };
 
+  
 
   return (
     <Accordion defaultActiveKey="0" flush>
       <Accordion.Item eventKey="0">
+        <Accordion.Header onClick={()=> {getData([])}}>All Courses</Accordion.Header>
+        </Accordion.Item>
+      <Accordion.Item eventKey="1">
         <Accordion.Header>Teacher</Accordion.Header>
         <Accordion.Body>
           <input type="text" onChange={handelTeacher} style={{ height: "32px" }} />
@@ -86,7 +100,7 @@ const SearchBar = ({ data }) => {
           <Button onClick={filterByTeacher}       > <FontAwesomeIcon icon={faSearch} /> </Button>
         </Accordion.Body>
       </Accordion.Item>
-      <Accordion.Item eventKey="1">
+      <Accordion.Item eventKey="2">
         <Accordion.Header>Courses</Accordion.Header>
         <Accordion.Body>
           <input type="text" onChange={handelCourse} style={{ height: "32px" }} />
@@ -94,7 +108,7 @@ const SearchBar = ({ data }) => {
           <Button onClick={filterByCourseName}    > <FontAwesomeIcon icon={faSearch} /> </Button>
         </Accordion.Body>
       </Accordion.Item>
-      <Accordion.Item eventKey="2">
+      <Accordion.Item eventKey="3">
         <Accordion.Header>Course Dates</Accordion.Header>
         <Accordion.Body>
           <input type="date" onChange={handelcourseDates} style={{ height: "32px" }} />

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-
-const { getAllUsers, addUser, getOneUser, deleteUser,updateUser, uploadFile, getOneUserLogin, handleLogin} = require('../controllers/Users');
+const authorization = require('../middleware/auth.js')
+const { getAllUsers, addUser, getOneUser, deleteUser,updateUser, uploadFile, getOneUserLogin, handleLogin, clearCookies} = require('../controllers/Users');
 
 router.get("/getuserbyemail/:email",getOneUserLogin)
 
@@ -9,19 +9,19 @@ router.get("/getuserbyemail/:email",getOneUserLogin)
 router.get('/getAll', getAllUsers);
 
 // GET request for one user
-router.get('/:id', getOneUser);
+router.get('/:id',authorization, getOneUser);
 
 // POST request for creating a user
 router.post('/add', addUser);
 
 // DELETE request for deleting a user
-router.delete('/:id', deleteUser);
+router.delete('/:id',authorization, deleteUser);
 
 // PUT request for updating a user
-router.put('/:id', updateUser);
+router.put('/:id',authorization, updateUser);
 
 
-router.post('/upload',uploadFile)
+router.post('/upload',authorization,uploadFile)
 
 router.post('/login',handleLogin)
   

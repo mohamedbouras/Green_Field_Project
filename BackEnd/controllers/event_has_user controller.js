@@ -1,6 +1,30 @@
-const { createAUserToEvent, getAllTheEvents, getEventbyId, deleteUserFromEvent, getEventsByUserId} = require("../database/models/event_has_user")
+const { createAUserToEvent, getAllTheEvents, getEventbyId, deleteUserFromEvent, getEventsByUserId,myFavorit,getEventByTeacherName} = require("../database/models/event_has_user")
 
 module.exports={
+    getEventsofTeacher : (req,res)=>{
+        const user_name = req.params.teacherName
+        getEventByTeacherName((err,results)=>{
+            if (err){
+                console.log(err)
+                res.status(500).json(err)
+            }
+            res.status(200).json(results)
+        },[user_name])
+
+    },
+    getfav:(req,res)=>{
+        const {event_id, user_id} = req.body
+        console.log(req.body);
+        myFavorit((err,ress)=>{
+            if(err){
+                res.send(err)
+            }else{
+                if(ress.length>0)res.send({favorit:true})
+                else res.send({favorit:false})
+                console.log(ress);
+            }
+        },event_id,user_id)
+    },
     createUserEvent: (req,res)=>{
         const {event_id, user_id,action_type} = req.body
         getEventbyId((err,results)=>{
@@ -45,7 +69,8 @@ module.exports={
     },
     deleteUserEvent : (req,res)=>{
         const event_id = req.params.id
-        const {user_id} = req.body
+        const user_id = req.params.ev
+        console.log(event_id,user_id);
         deleteUserFromEvent((err,results)=>{
             if (err){
                 console.log(err)

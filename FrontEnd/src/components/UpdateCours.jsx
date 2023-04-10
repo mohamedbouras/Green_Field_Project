@@ -17,7 +17,8 @@ const [file, setFile] = useState('')
 const handleChoFile = (e) => {
         setFile(e.target.files[0])
     }
-    
+    const {token} =JSON.parse(localStorage.getItem('user'))
+
   const uploadImage = async () => {
     const form = new FormData();
     form.append('file', file);
@@ -46,7 +47,12 @@ const handleChoFile = (e) => {
       console.log(course);
       const response = await axios.put(
         `http://localhost:4000/api/events/upadate/${courseData.event_id}`,
-        course
+        course,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
       )
 
     } catch (error) {
